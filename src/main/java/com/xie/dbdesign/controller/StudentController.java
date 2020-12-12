@@ -48,16 +48,17 @@ public class StudentController {
         this.courseService = courseService;
     }
 
-    //获取个人信息重定向到主页
+    // 获取个人信息跳转到个人信息页
     @RequestMapping(value = "/showStuInfo", method = RequestMethod.GET)
-    public String getUserInfo(Model model,@RequestParam("userId") String userId){
+    public String getUserInfo(Model model,@RequestParam("userId") String userId, String cName){
         Student stu = studentService.queryStudentBySno(userId);
         Department dept =departmentService.queryDepartmentByDno(stu.getDNo());
         model.addAttribute("student", stu);
         model.addAttribute("department", dept);
-        return "studentInfo";
+        return "stuAInfo";
     }
 
+    // 获取学生个人成绩信息跳转到学生成绩信息页
     @RequestMapping(value = "/showStuGrade", method = RequestMethod.GET)
     public String toStuGradeInfoSite(Model model, @RequestParam("userId") String sNo){
         List<Grade> grades = gradeService.queryGradeBySno(sNo);
@@ -70,9 +71,49 @@ public class StudentController {
         return "stuGradeInfo";
     }
 
+    // 跳转到查询选课页面
     @RequestMapping("/toChooseCourse")
     public String toChooseCourse(){
         return "chooseCourse";
+    }
+
+    // 跳转到查询各种信息页面
+    @RequestMapping("/toQueryInfoHome")
+    public String toQueryInfoHome(@RequestParam("userType") String userType){
+        return "queryInfoHome";
+    }
+
+    // 跳转到查询学生信息页面
+    @RequestMapping("/toQueryStudentInfo")
+    public String toQueryStudentInfo(){
+        return "studentInfoQuery";
+    }
+
+    // 查询学生信息
+    @RequestMapping("/queryStudentInfo")
+    public String queryStudentInfo(Model model,
+                                   @RequestParam("searchType") String searchType,
+                                   @RequestParam("searchText") String searchText){
+        List<Student> res = new ArrayList<>();
+        switch (searchType){
+            case "学号":
+                Student student = studentService.queryStudentBySno(searchText);
+                if(student == null){ break; }
+                res.add(student);
+                break;
+            case "姓名":
+                res = studentService.queryStudentBySname(searchText);
+                break;
+            case "系号":
+                res = studentService.queryStudentByDno(searchText);
+                break;
+            default:break;
+        }
+        if(res.size() == 0){
+            model.addAttribute("error", "未找到!");
+        }
+        model.addAttribute("result", res);
+        return "studentInfoQuery";
     }
 
 }

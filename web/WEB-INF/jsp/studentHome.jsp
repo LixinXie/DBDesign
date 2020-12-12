@@ -11,8 +11,14 @@
 </head>
 <body>
     <h3>
-        &nbsp;&nbsp;欢迎您: ${userId}<br><br>
-    </h3>
+        &nbsp;&nbsp;欢迎您: ${userId}&nbsp;同学
+        <div style="text-align: right">
+            <button type="button">
+                <a href="${pageContext.request.contextPath}/login/toLogin">退出登录</a>
+            </button>&nbsp;&nbsp;
+        </div>
+    </h3><br><br>
+
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span12" align="center">
@@ -22,8 +28,11 @@
                 <button type="button" value="成绩信息">
                     <a href="${pageContext.request.contextPath}/showStuGrade?userId=${userId}">成绩信息</a>
                 </button><br><br>
-                <button type="button" value="选课">
-                    <a href="${pageContext.request.contextPath}/toChooseCourse?userId=${userId}">选课</a>
+                <button type="button" value="个人选课">
+                    <a href="${pageContext.request.contextPath}/toChooseCourse?userId=${userId}">个人选课</a>
+                </button><br><br>
+                <button type="button" value="信息查询">
+                    <a href="${pageContext.request.contextPath}/toQueryInfoHome?userType=${userType}">信息查询</a>
                 </button>
             </div>
         </div>

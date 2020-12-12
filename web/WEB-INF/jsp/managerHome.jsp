@@ -7,7 +7,12 @@
 </head>
 <body>
     <h3>
-        &nbsp;&nbsp;欢迎您: ${userId}<br><br>
-    </h3>
+        &nbsp;&nbsp;欢迎您: ${userId}&nbsp;管理员
+        <div style="text-align: right">
+            <button type="button">
+                <a href="${pageContext.request.contextPath}/login/toLogin">退出登录</a>
+            </button>&nbsp;&nbsp;
+        </div>
+    </h3><br><br>
 </body>
 </html>

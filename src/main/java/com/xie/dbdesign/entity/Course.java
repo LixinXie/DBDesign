@@ -2,7 +2,7 @@ package com.xie.dbdesign.entity;
 
 
 import lombok.Data;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Data
 public class Course {
@@ -22,6 +22,6 @@ public class Course {
     // 上课地点
     private String cSite;
     // 考试时间
-    private Date cTestTime;
+    private Timestamp cTestTime;
 
 }
