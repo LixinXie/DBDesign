@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xie.dbdesign.mapper.CourseMapper">
+
+    <resultMap id="CourseResultMap" type="Course">
+        <id column="c_no" property="cNo"/>
+        <result column="c_name" property="cName"/>
+        <result column="t_no" property="tNo"/>
+        <result column="c_hour" property="cHour"/>
+        <result column="c_credit" property="cCredit"/>
+        <result column="c_time" property="cTime"/>
+        <result column="c_site" property="cSite"/>
+        <result column="c_testtime" property="cTestTime"/>
+    </resultMap>
+
+    <insert id="addCourse" parameterType="Course">
+        insert into
+            dbdesign_5071.tbl_course_5071(c_no, c_name, t_no, c_hour, c_credit, c_time, c_site, c_testtime)
+        values
+            (#{cNo}, #{cName}, #{tNo}, #{cHour}, #{cCredit}, #{cTime}, #{cSite}, #{cTestTime})
+    </insert>
+
+    <delete id="deleteCourseByCno">
+        delete from dbdesign_5071.tbl_course_5071
+        where c_no = #{cNo}
+    </delete>
+
+    <update id="updateCourse" parameterType="Course">
+        update dbdesign_5071.tbl_course_5071
+        set c_name = #{cName},
+            t_no = #{tNo},
+            c_hour = #{cHour},
+            c_credit = #{cCredit},
+            c_time = #{cTime},
+            c_site = #{cSite},
+            c_testtime = #{cTestTime}
+        where c_no = #{cNo}
+    </update>
+
+    <select id="queryCourseByCno" resultMap="CourseResultMap">
+        select * from dbdesign_5071.tbl_course_5071
+        where c_no = #{cNo}
+    </select>
+
+    <select id="queryCourseByCname" resultMap="CourseResultMap">
+        select * from dbdesign_5071.tbl_course_5071
+        where c_name like '%' #{cName} '%'
+    </select>
+
+    <select id="queryCourseByTname" resultMap="CourseResultMap">
+        select c_no, c_name, tbl_course_5071.t_no, c_hour, c_credit, c_time, c_site, c_testtime
+        from dbdesign_5071.tbl_course_5071, dbdesign_5071.tbl_teacher_5071
+        where tbl_course_5071.t_no = tbl_teacher_5071.t_no and t_name like '%' #{tName} '%'
+    </select>
+
+</mapper>

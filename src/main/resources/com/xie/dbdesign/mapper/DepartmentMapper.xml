@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xie.dbdesign.mapper.DepartmentMapper">
+
+    <resultMap id="DepartmentResultMap" type="Department">
+        <id column="d_no" property="dNo"/>
+        <result column="d_name" property="dName"/>
+        <result column="d_description" property="dDescription"/>
+    </resultMap>
+
+    <insert id="addDepartment" parameterType="Department">
+        insert into dbdesign_5071.tbl_dept_5071(d_no, d_name, d_description)
+        values (#{dNo}, #{dName}, #{dDescription})
+    </insert>
+
+    <delete id="deleteDepartmentByDno">
+        delete from dbdesign_5071.tbl_dept_5071
+        where d_no = #{dNo}
+    </delete>
+
+    <update id="updateDepartment" parameterType="Department">
+        update dbdesign_5071.tbl_dept_5071
+        set d_name = #{dName}, d_description = #{dDescription}
+        where d_no = #{dNo}
+    </update>
+
+    <select id="queryDepartmentByDno" resultMap="DepartmentResultMap">
+        select * from dbdesign_5071.tbl_dept_5071
+        where d_no = #{dNo}
+    </select>
+
+    <select id="queryDepartmentByDname" resultMap="DepartmentResultMap">
+        select * from dbdesign_5071.tbl_dept_5071
+        where d_name = #{cName}
+    </select>
+    
+</mapper>

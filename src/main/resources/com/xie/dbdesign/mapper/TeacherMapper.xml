@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xie.dbdesign.mapper.TeacherMapper">
+    
+    <resultMap id="TeacherResultMap" type="Teacher">
+        <id column="t_no" property="tNo"/>
+        <result column="t_name" property="tName"/>
+        <result column="t_sex" property="tSex"/>
+        <result column="t_birthday" property="tBirthday"/>
+        <result column="d_no" property="dNo"/>
+        <result column="t_title" property="tTitle"/>
+        <result column="t_major" property="tMajor"/>
+    </resultMap>
+
+    <insert id="addTeacher" parameterType="Teacher">
+        insert into
+            dbdesign_5071.tbl_teacher_5071(t_no, t_name, t_sex, t_birthday, d_no, t_title, t_major)
+        values
+            (#{tNo}, #{tName}, #{tSex}, #{tBirthday}, #{dNo}, #{tTitle}, #{tMajor})
+    </insert>
+
+    <update id="updateTeacher" parameterType="Teacher">
+        update dbdesign_5071.tbl_teacher_5071
+        set
+            t_name = #{tName},
+            t_sex = #{tSex},
+            t_birthday = #{tBirthday},
+            d_no = #{dNo},
+            t_title = #{tTitle},
+            t_major = #{tMajor}
+        where
+            t_no = #{tNo}
+    </update>
+
+    <delete id="deleteTeacherByTno">
+        delete from dbdesign_5071.tbl_teacher_5071
+        where t_no = #{tNo}
+    </delete>
+
+    <select id="queryTeacherByTno" resultMap="TeacherResultMap">
+        select * from dbdesign_5071.tbl_teacher_5071
+        where t_no = #{tNo}
+    </select>
+
+    <select id="queryTeacherByTname" resultMap="TeacherResultMap">
+        select * from dbdesign_5071.tbl_teacher_5071
+        where t_name like '%' #{tName} '%'
+    </select>
+
+    <select id="queryTeacherByDno" resultMap="TeacherResultMap">
+        select * from dbdesign_5071.tbl_teacher_5071
+        where d_no = #{dNo}
+    </select>
+    
+</mapper>

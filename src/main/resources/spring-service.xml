@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--1.扫描service下的包-->
+    <context:component-scan base-package="com.xie.dbdesign.service"/>
+    <!--2.将所有业务类注入spring，通过配置或注解实现-->
+    <bean id="courseServiceImpl" class="com.xie.dbdesign.service.impl.CourseServiceImpl">
+        <property name="courseMapper" ref="courseMapper"/>
+    </bean>
+    <bean id="departmentServiceImpl" class="com.xie.dbdesign.service.impl.DepartmentServiceImpl">
+        <property name="departmentMapper" ref="departmentMapper"/>
+    </bean>
+    <bean id="gradeServiceImpl" class="com.xie.dbdesign.service.impl.GradeServiceImpl">
+        <property name="gradeMapper" ref="gradeMapper"/>
+    </bean>
+    <bean id="studentServiceImpl" class="com.xie.dbdesign.service.impl.StudentServiceImpl">
+        <property name="studentMapper" ref="studentMapper"/>
+    </bean>
+    <bean id="teacherServiceImpl" class="com.xie.dbdesign.service.impl.TeacherServiceImpl">
+        <property name="teacherMapper" ref="teacherMapper"/>
+    </bean>
+    <bean id="usersServiceImpl" class="com.xie.dbdesign.service.impl.UsersServiceImpl">
+        <property name="usersMapper" ref="usersMapper"/>
+    </bean>
+    <!--3.声明式事务配置-->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入数据源-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--4.aop事务支持-->
+
+</beans>

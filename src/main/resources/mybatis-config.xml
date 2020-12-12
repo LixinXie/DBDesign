@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <typeAliases>
+        <package name="com.xie.dbdesign.entity"/>
+    </typeAliases>
+
+    <!--接口与xml文件同名使用class，不同名则定位resource-->
+    <mappers>
+        <mapper resource="com/xie/dbdesign/mapper/CourseMapper.xml"/>
+        <mapper resource="com/xie/dbdesign/mapper/DepartmentMapper.xml"/>
+        <mapper resource="com/xie/dbdesign/mapper/GradeMapper.xml"/>
+        <mapper resource="com/xie/dbdesign/mapper/StudentMapper.xml"/>
+        <mapper resource="com/xie/dbdesign/mapper/TeacherMapper.xml"/>
+        <mapper resource="com/xie/dbdesign/mapper/UsersMapper.xml"/>
+    </mappers>
+
+</configuration>

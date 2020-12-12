@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xie.dbdesign.mapper.GradeMapper">
+
+    <resultMap id="GradeResultMap" type="Grade">
+        <id column="s_no" property="sNo"/>
+        <id column="c_no" property="cNo"/>
+        <result column="usual_grade" property="usualGrade"/>
+        <result column="test_grade" property="testGrade"/>
+        <result column="general_grade" property="generalGrade"/>
+    </resultMap>
+
+    <insert id="addGrade" parameterType="Grade">
+        insert into
+            dbdesign_5071.tbl_sc_5071(s_no, c_no, usual_grade, test_grade, general_grade)
+        values
+            (#{sNo}, #{cNo}, #{usualGrade}, #{testGrade}, #{generalGrade})
+    </insert>
+
+    <update id="updateGrade" parameterType="Grade">
+        update
+            dbdesign_5071.tbl_sc_5071
+        set
+            usual_grade = #{usualGrade},
+            test_grade = #{testGrade},
+            general_grade = #{generalGrade}
+        where s_no = #{sNo} and c_no = #{cNo}
+    </update>
+
+    <select id="queryGradeBySno" resultMap="GradeResultMap">
+        select * from dbdesign_5071.tbl_sc_5071 where s_no = #{sNo}
+    </select>
+
+    <select id="queryGradeBySname" resultMap="GradeResultMap">
+        select
+            tbl_sc_5071.s_no,
+            tbl_sc_5071.c_no,
+            tbl_sc_5071.usual_grade,
+            tbl_sc_5071.test_grade,
+            tbl_sc_5071.general_grade
+        from
+            dbdesign_5071.tbl_sc_5071,
+            dbdesign_5071.tbl_student_5071
+        where
+            tbl_sc_5071.s_no = tbl_student_5071.s_no
+            and tbl_student_5071.s_name like '%' #{sName} '%'
+    </select>
+
+    <select id="queryGradeByCno" resultMap="GradeResultMap">
+        select * from dbdesign_5071.tbl_sc_5071
+        where c_no = #{cNo}
+    </select>
+
+    <select id="queryGradeByCname" resultMap="GradeResultMap">
+        select
+            tbl_sc_5071.s_no,
+            tbl_sc_5071.c_no,
+            tbl_sc_5071.usual_grade,
+            tbl_sc_5071.test_grade,
+            tbl_sc_5071.general_grade
+        from
+            dbdesign_5071.tbl_sc_5071,
+            dbdesign_5071.tbl_course_5071
+        where
+            tbl_sc_5071.c_no = tbl_course_5071.c_no
+            and tbl_course_5071.c_name like '%' #{cName} '%'
+    </select>
+
+    <select id="queryGradeByTname" resultMap="GradeResultMap">
+        select
+            tbl_sc_5071.s_no,
+            tbl_sc_5071.c_no,
+            tbl_sc_5071.usual_grade,
+            tbl_sc_5071.test_grade,
+            tbl_sc_5071.general_grade
+        from
+            dbdesign_5071.tbl_sc_5071,
+            dbdesign_5071.tbl_course_5071,
+            dbdesign_5071.tbl_teacher_5071
+        where
+            tbl_sc_5071.c_no = tbl_course_5071.c_no
+            and tbl_course_5071.t_no = tbl_teacher_5071.t_no
+            and tbl_teacher_5071.t_name like '%' #{tName} '%'
+    </select>
+
+    <select id="queryGradeByDno" resultMap="GradeResultMap">
+        select
+            tbl_sc_5071.s_no,
+            tbl_sc_5071.c_no,
+            tbl_sc_5071.usual_grade,
+            tbl_sc_5071.test_grade,
+            tbl_sc_5071.general_grade
+        from
+            dbdesign_5071.tbl_sc_5071,
+            dbdesign_5071.tbl_student_5071
+        where
+            tbl_sc_5071.s_no = tbl_student_5071.s_no
+            and tbl_student_5071.d_no = #{dNo}
+    </select>
+    
+</mapper>

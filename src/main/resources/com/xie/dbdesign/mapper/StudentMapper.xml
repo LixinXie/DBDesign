@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xie.dbdesign.mapper.StudentMapper">
+
+    <resultMap id="StudentResultMap" type="Student">
+        <id column="s_no" property="sNo"/>
+        <result column="s_name" property="sName"/>
+        <result column="s_birthday" property="sBirthday"/>
+        <result column="s_sex" property="sSex"/>
+        <result column="enroll_grade" property="enrollGrade"/>
+        <result column="d_no" property="dNo"/>
+    </resultMap>
+
+    <insert id="addStudent" parameterType="Student">
+        insert into
+            dbdesign_5071.tbl_student_5071(s_no, s_name, s_birthday, s_sex, enroll_grade, d_no)
+        values
+            (#{sNo}, #{sName}, #{sBirthday}, #{sSex}, #{enrollGrade}, #{dNo})
+    </insert>
+
+    <update id="updateStudent" parameterType="Student">
+        update dbdesign_5071.tbl_student_5071
+        set
+            s_name = #{sName},
+            s_birthday = #{sBirthday},
+            s_sex = #{sSex},
+            enroll_grade = #{enrollGrade},
+            d_no = #{dNo}
+        where
+            s_no = #{sNo}
+    </update>
+
+    <select id="queryStudentBySno" resultMap="StudentResultMap">
+        select * from dbdesign_5071.tbl_student_5071
+        where s_no = #{sNo}
+    </select>
+
+    <select id="queryStudentBySname" resultMap="StudentResultMap">
+        select * from dbdesign_5071.tbl_student_5071
+        where s_name like '%' #{sName} '%'
+    </select>
+
+    <select id="queryStudentByDno" resultMap="StudentResultMap">
+        select * from dbdesign_5071.tbl_student_5071
+        where d_no = #{dNo}
+    </select>
+    
+</mapper>
