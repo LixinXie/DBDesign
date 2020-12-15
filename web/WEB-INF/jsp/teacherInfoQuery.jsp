@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -15,7 +16,7 @@
 <body>
     <br><br>
     <div align="center">
-        <form class="form-inline" action="${pageContext.request.contextPath}/queryCourseInfo" method="post">
+        <form class="form-inline" action="${pageContext.request.contextPath}/queryTeacherInfo" method="post">
             按
             <select name="searchType">
                 <option>职工号</option>
@@ -46,14 +47,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="course" items="${result}">
+                    <c:forEach var="department" items="${teachers}">
                         <tr>
-                            <td>${course.SNo}</td>
-                            <td>${course.SName}</td>
-                            <td>${course.SBirthday}</td>
-                            <td>${course.SSex}</td>
-                            <td>${course.enrollGrade}</td>
-                            <td>${course.DNo}</td>
+                            <td>${department.TNo}</td>
+                            <td>${department.TName}</td>
+                            <td>${department.TBirthday}</td>
+                            <td>${department.TSex}</td>
+                            <td>${department.DNo}</td>
+                            <td>${department.TTitle}</td>
+                            <td>${department.TMajor}</td>
                         </tr>
                     </c:forEach>
 

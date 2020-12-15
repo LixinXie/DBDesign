@@ -45,14 +45,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="course" items="${result}">
+                    <c:forEach var="department" items="${result}">
                         <tr>
-                            <td>${course.SNo}</td>
-                            <td>${course.SName}</td>
-                            <td>${course.SBirthday}</td>
-                            <td>${course.SSex}</td>
-                            <td>${course.enrollGrade}</td>
-                            <td>${course.DNo}</td>
+                            <td>${department.SNo}</td>
+                            <td>${department.SName}</td>
+                            <td>${department.SBirthday}</td>
+                            <td>${department.SSex}</td>
+                            <td>${department.enrollGrade}</td>
+                            <td>${department.DNo}</td>
                         </tr>
                     </c:forEach>
 

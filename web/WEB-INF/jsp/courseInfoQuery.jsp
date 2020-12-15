@@ -48,17 +48,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="course" items="${resultMap.keySet()}">
+                    <c:forEach var="department" items="${resultMap.keySet()}">
                         <tr>
-                            <td>${course.CNo}</td>
-                            <td>${course.CName}</td>
-                            <td>${course.TNo}</td>
-                            <td>${resultMap.get(course).TName}</td>
-                            <td>${course.CHour}</td>
-                            <td>${course.CCredit}</td>
-                            <td>${course.CTime}</td>
-                            <td>${course.CSite}</td>
-                            <td>${course.CTestTime}</td>
+                            <td>${department.CNo}</td>
+                            <td>${department.CName}</td>
+                            <td>${department.TNo}</td>
+                            <td>${resultMap.get(department).TName}</td>
+                            <td>${department.CHour}</td>
+                            <td>${department.CCredit}</td>
+                            <td>${department.CTime}</td>
+                            <td>${department.CSite}</td>
+                            <td>${department.CTestTime}</td>
                         </tr>
                     </c:forEach>
 

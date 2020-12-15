@@ -71,16 +71,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="course" items="${stuCourse}">
+                    <c:forEach var="department" items="${stuCourse}">
                         <tr>
-                            <td>${course.CNo}</td>
-                            <td>${course.CName}</td>
-                            <td>${course.TNo}</td>
-                            <td>${course.CHour}</td>
-                            <td>${course.CCredit}</td>
-                            <td>${course.CTime}</td>
-                            <td>${course.CSite}</td>
-                            <td>${course.CTestTime}</td>
+                            <td>${department.CNo}</td>
+                            <td>${department.CName}</td>
+                            <td>${department.TNo}</td>
+                            <td>${department.CHour}</td>
+                            <td>${department.CCredit}</td>
+                            <td>${department.CTime}</td>
+                            <td>${department.CSite}</td>
+                            <td>${department.CTestTime}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
