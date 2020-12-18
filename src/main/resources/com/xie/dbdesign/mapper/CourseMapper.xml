@@ -49,6 +49,10 @@
         where c_name like '%' #{cName} '%'
     </select>
 
+    <select id="queryAllCourse" resultMap="CourseResultMap">
+        select * from dbdesign_5071.tbl_course_5071
+    </select>
+
     <select id="queryCourseByTname" resultMap="CourseResultMap">
         select c_no, c_name, tbl_course_5071.t_no, c_hour, c_credit, c_time, c_site, c_testtime
         from dbdesign_5071.tbl_course_5071, dbdesign_5071.tbl_teacher_5071

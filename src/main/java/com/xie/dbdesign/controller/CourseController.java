@@ -34,7 +34,9 @@ public class CourseController {
 
     // 跳转到查询课程信息页面
     @RequestMapping("/toQueryCourseInfo")
-    public String toQueryCourseInfo(){
+    public String toQueryCourseInfo(Model model,
+                                    @RequestParam("userId") String userId){
+        model.addAttribute("userId", userId);
         return "courseInfoQuery";
     }
 

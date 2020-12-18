@@ -12,8 +12,11 @@ public interface GradeService {
     // 修改成绩
     int updateGrade(Grade grade);
 
+    // 删除指定学号课程号的选课记录
+    int deleteGradeBySnoCno(String Sno, String cNo);
+
     // 按学号查询学生成绩
-    List<Grade> queryGradeBySno(String sNo);
+    List<Grade> queryGradeBySno(String Sno);
 
     // 按学生姓名查询成绩
     List<Grade> queryGradeBySname(String sName);
@@ -30,4 +33,6 @@ public interface GradeService {
     // 按系号查询学生成绩
     List<Grade> queryGradeByDno(String dNo);
 
+    // 根据学号查所获学分
+    Double queryGottenCredits(String Sno);
 }

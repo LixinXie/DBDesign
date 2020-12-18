@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/login")
 public class LoginController {
 
     private UsersService usersService;
@@ -33,6 +32,12 @@ public class LoginController {
         return "login";
     }
 
+    // 退出登录
+    @RequestMapping("/logout")
+    public String logout(){
+        return "redirect:/toLogin";
+    }
+
     //跳转到主页
     @RequestMapping(value = "/toHome", method = RequestMethod.POST)
     public String login(Model model,
@@ -47,12 +52,13 @@ public class LoginController {
         if(pwd.equals(checkpswd)){//登录成功
             // 将用户名放入model
             model.addAttribute("userId", userid);
-            // 将用户类型放入model
-            model.addAttribute("userType", ptype);
             switch (ptype){
-                case "学生": homePage =  "studentHome"; break;
-                case "教职工": homePage = "teacherHome"; break;
-                case "管理员": homePage = "managerHome"; break;
+                case "教职工":
+                    homePage = "teacherHome";
+                    break;
+                case "管理员":
+                    homePage = "managerHome";
+                    break;
                 default: homePage = "studentHome"; break;
             }
             return homePage;

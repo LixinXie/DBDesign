@@ -13,6 +13,12 @@
     </style>
 </head>
 <body>
+    <h5>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button">
+            <a href="${pageContext.request.contextPath}/backStuHome?userId=${userId}">回到主页</a>
+        </button>
+    </h5>
     <br><br>
     <div align="center">
         <form class="form-inline" action="${pageContext.request.contextPath}/queryDepartmentInfo" method="post">

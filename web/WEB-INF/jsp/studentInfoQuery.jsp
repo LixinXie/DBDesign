@@ -13,6 +13,12 @@
     </style>
 </head>
 <body>
+    <h5>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button">
+            <a href="${pageContext.request.contextPath}/backStuHome?userId=${userId}">回到主页</a>
+        </button>
+    </h5>
     <br><br>
     <div align="center">
         <form class="form-inline" action="${pageContext.request.contextPath}/queryStudentInfo" method="post">
@@ -45,14 +51,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="department" items="${result}">
+                    <c:forEach var="student" items="${result}">
                         <tr>
-                            <td>${department.SNo}</td>
-                            <td>${department.SName}</td>
-                            <td>${department.SBirthday}</td>
-                            <td>${department.SSex}</td>
-                            <td>${department.enrollGrade}</td>
-                            <td>${department.DNo}</td>
+                            <td>${student.SNo}</td>
+                            <td>${student.SName}</td>
+                            <td>${student.SBirthday}</td>
+                            <td>${student.SSex}</td>
+                            <td>${student.enrollGrade}</td>
+                            <td>${student.DNo}</td>
                         </tr>
                     </c:forEach>
 

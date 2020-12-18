@@ -10,7 +10,7 @@
         &nbsp;&nbsp;欢迎您: ${userId}&nbsp;老师
         <div style="text-align: right">
             <button type="button">
-                <a href="${pageContext.request.contextPath}/login/toLogin">退出登录</a>
+                <a href="${pageContext.request.contextPath}/logout">退出登录</a>
             </button>&nbsp;&nbsp;
         </div>
     </h3><br><br>

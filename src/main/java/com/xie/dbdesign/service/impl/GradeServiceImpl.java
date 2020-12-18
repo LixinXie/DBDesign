@@ -25,6 +25,11 @@ public class GradeServiceImpl implements GradeService {
     }
 
     @Override
+    public int deleteGradeBySnoCno(String sNo, String cNo) {
+        return gradeMapper.deleteGradeBySnoCno(sNo, cNo);
+    }
+
+    @Override
     public List<Grade> queryGradeBySno(String sNo) {
         return gradeMapper.queryGradeBySno(sNo);
     }
@@ -53,4 +58,10 @@ public class GradeServiceImpl implements GradeService {
     public List<Grade> queryGradeByDno(String dNo) {
         return gradeMapper.queryGradeByDno(dNo);
     }
+
+    @Override
+    public Double queryGottenCredits(String sNo) {
+        return gradeMapper.queryGottenCredits(sNo);
+    }
+
 }

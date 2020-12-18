@@ -35,6 +35,11 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public List<Course> queryAllCourse() {
+        return courseMapper.queryAllCourse();
+    }
+
+    @Override
     public List<Course> queryCourseByCname(String cName) {
         return courseMapper.queryCourseByCname(cName);
     }

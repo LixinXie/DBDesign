@@ -8,7 +8,7 @@
 <body>
     <div align="center" style="margin: 100px auto">
         <h4>请登录</h4><br>
-        <form action="${pageContext.request.contextPath}/login/toHome" method="post">
+        <form action="${pageContext.request.contextPath}/toHome" method="post">
             <span style="color: red; font-weight: bold">${error}</span><br>
             账号: <input type="text" name="userid" required><br><br>
             密码: <input type="password" name="pswd" required><br><br>

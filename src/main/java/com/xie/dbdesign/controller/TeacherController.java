@@ -23,9 +23,12 @@ public class TeacherController {
 
     // 跳转到查询教职工信息页面
     @RequestMapping("/toQueryTeacherInfo")
-    public String toQueryTeacherInfo(){
+    public String toQueryTeacherInfo(Model model,
+                                     @RequestParam("userId") String userId){
+        model.addAttribute("userId", userId);
         return "teacherInfoQuery";
     }
+    // 查询教师信息
     @RequestMapping("/queryTeacherInfo")
     public String queryTeacherInfo(Model model,
                                    @RequestParam("searchType") String searchType,

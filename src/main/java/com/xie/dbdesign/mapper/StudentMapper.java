@@ -13,7 +13,7 @@ public interface StudentMapper {
     int updateStudent(Student student);
 
     // 按学号查询学生信息
-    Student queryStudentBySno(String sNo);
+    Student queryStudentBySno(String userId);
 
     // 按姓名查询学生信息
     List<Student> queryStudentBySname(String sName);

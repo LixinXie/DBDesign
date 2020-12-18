@@ -1,6 +1,7 @@
 package com.xie.dbdesign.mapper;
 
 import com.xie.dbdesign.entity.Grade;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,6 +12,9 @@ public interface GradeMapper {
 
     // 修改成绩
     int updateGrade(Grade grade);
+
+    // 删除指定学号课程号的选课记录
+    int deleteGradeBySnoCno(@Param("sNo") String sNo, @Param("cNo") String cNo);
 
     // 按学号查询学生成绩
     List<Grade> queryGradeBySno(String sNo);
@@ -29,6 +33,9 @@ public interface GradeMapper {
 
     // 按系号查询学生成绩
     List<Grade> queryGradeByDno(String dNo);
+
+    // 根据学号查所获学分
+    Double queryGottenCredits(String sNo);
 
 
 }

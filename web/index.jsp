@@ -6,7 +6,7 @@
   <body>
     <h3 style="margin: 100px auto" align="center">
       欢迎来到教学管理系统！<br><br>
-      <a href="${pageContext.request.contextPath}/login/toLogin">点击登录</a>
+      <a href="${pageContext.request.contextPath}/toLogin">点击登录</a>
     </h3>
 
 

@@ -29,6 +29,11 @@
         where s_no = #{sNo} and c_no = #{cNo}
     </update>
 
+    <delete id="deleteGradeBySnoCno">
+        delete from dbdesign_5071.tbl_sc_5071
+        where s_no = #{sNo} and c_no = #{cNo}
+    </delete>
+
     <select id="queryGradeBySno" resultMap="GradeResultMap">
         select * from dbdesign_5071.tbl_sc_5071 where s_no = #{sNo}
     </select>
@@ -98,6 +103,12 @@
         where
             tbl_sc_5071.s_no = tbl_student_5071.s_no
             and tbl_student_5071.d_no = #{dNo}
+    </select>
+
+    <select id="queryGottenCredits" resultType="java.lang.Double">
+        select sum(c_credit)
+        from tbl_course_5071
+        where c_no in (select c_no from tbl_sc_5071 where s_no = #{sNo})
     </select>
     
 </mapper>

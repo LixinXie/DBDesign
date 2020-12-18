@@ -18,6 +18,9 @@ public interface CourseService {
     // 根据课程号查询一门课程
     Course queryCourseByCno(String cNo);
 
+    // 查询所有课程
+    List<Course> queryAllCourse();
+
     // 根据课程名查询一门课程
     List<Course> queryCourseByCname(String cName);
 

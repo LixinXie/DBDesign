@@ -77,7 +77,7 @@ public class MyTest {
     public void testGrade(){
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         GradeService service = (GradeService) context.getBean("gradeServiceImpl");
-        //System.out.println(service.queryGradeBySno("1111"));
+        //System.out.println(service.queryGradeByuserId("1111"));
         //System.out.println(service.queryGradeByCno("aaaa"));
         //System.out.println(service.queryGradeBySname("张三"));
         //System.out.println(service.queryGradeByCname("数据库"));
@@ -85,7 +85,7 @@ public class MyTest {
         //System.out.println(service.queryGradeByDno("0001"));
 
         /*Grade grade = new Grade();
-        grade.setSNo("2222");
+        grade.setuserId("2222");
         grade.setCNo("dddd");
         grade.setUsualGrade(85);
         grade.setTestGrade(90);
@@ -97,6 +97,8 @@ public class MyTest {
         g.setUsualGrade(90);
         service.updateGrade(g);*/
 
+        //service.deleteGradeByuserIdCno("1111", "dddd");
+
 
     }
 
@@ -104,12 +106,12 @@ public class MyTest {
     public void testStudent() throws ParseException {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         StudentService service = (StudentService) context.getBean("studentServiceImpl");
-        //System.out.println(service.queryStudentBySno("1111"));
+        //System.out.println(service.queryStudentByuserId("1111"));
         //System.out.println(service.queryStudentBySname("张三"));
         //System.out.println(service.queryStudentByDno("0001"));
 
         /*Student student = new Student();
-        student.setSNo("3333");
+        student.setuserId("3333");
         student.setSName("王五");
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         student.setSBirthday(new java.sql.Date(format.parse("2000-01-02").getTime()));
@@ -118,7 +120,7 @@ public class MyTest {
         student.setDNo("0002");
         service.addStudent(student);*/
 
-        /*Student stu = service.queryStudentBySno("1111");
+        /*Student stu = service.queryStudentByuserId("1111");
         stu.setSSex("女");
         service.updateStudent(stu);*/
     }

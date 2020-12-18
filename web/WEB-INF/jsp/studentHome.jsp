@@ -14,7 +14,7 @@
         &nbsp;&nbsp;欢迎您: ${userId}&nbsp;同学
         <div style="text-align: right">
             <button type="button">
-                <a href="${pageContext.request.contextPath}/login/toLogin">退出登录</a>
+                <a href="${pageContext.request.contextPath}/logout">退出登录</a>
             </button>&nbsp;&nbsp;
         </div>
     </h3><br><br>
@@ -29,14 +29,13 @@
                     <a href="${pageContext.request.contextPath}/showStuGrade?userId=${userId}">成绩信息</a>
                 </button><br><br>
                 <button type="button" value="个人选课">
-                    <a href="${pageContext.request.contextPath}/toChooseCourse?userId=${userId}">个人选课</a>
+                    <a href="${pageContext.request.contextPath}/toSelectCourse?userId=${userId}">个人选课</a>
                 </button><br><br>
                 <button type="button" value="信息查询">
-                    <a href="${pageContext.request.contextPath}/toQueryInfoHome?userType=${userType}">信息查询</a>
+                    <a href="${pageContext.request.contextPath}/toQueryInfoHome?userId=${userId}">信息查询</a>
                 </button>
             </div>
         </div>
     </div>
-
 </body>
 </html>

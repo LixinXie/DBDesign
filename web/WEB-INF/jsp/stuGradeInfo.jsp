@@ -7,6 +7,12 @@
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <h5>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button">
+            <a href="${pageContext.request.contextPath}/backStuHome?userId=${userId}">回到主页</a>
+        </button>
+    </h5>
     <div class="container">
         <div class="row clearfix">
             <div class="col-md-12 column">

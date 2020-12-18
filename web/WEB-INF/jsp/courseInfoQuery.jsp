@@ -13,6 +13,12 @@
     </style>
 </head>
 <body>
+    <h5>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button">
+            <a href="${pageContext.request.contextPath}/backStuHome?userId=${userId}">回到主页</a>
+        </button>
+    </h5>
     <br><br>
     <div align="center">
         <form class="form-inline" action="${pageContext.request.contextPath}/queryCourseInfo" method="post">
@@ -48,17 +54,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="department" items="${resultMap.keySet()}">
+                    <c:forEach var="course" items="${resultMap.keySet()}">
                         <tr>
-                            <td>${department.CNo}</td>
-                            <td>${department.CName}</td>
-                            <td>${department.TNo}</td>
-                            <td>${resultMap.get(department).TName}</td>
-                            <td>${department.CHour}</td>
-                            <td>${department.CCredit}</td>
-                            <td>${department.CTime}</td>
-                            <td>${department.CSite}</td>
-                            <td>${department.CTestTime}</td>
+                            <td>${course.CNo}</td>
+                            <td>${course.CName}</td>
+                            <td>${course.TNo}</td>
+                            <td>${resultMap.get(course).TName}</td>
+                            <td>${course.CHour}</td>
+                            <td>${course.CCredit}</td>
+                            <td>${course.CTime}</td>
+                            <td>${course.CSite}</td>
+                            <td>${course.CTestTime}</td>
                         </tr>
                     </c:forEach>
 
