@@ -7,10 +7,16 @@
     <resultMap id="UsersResultMap" type="Users">
         <id column="username" property="username"/>
         <result column="pswd" property="pswd"/>
+        <result column="usertype" property="usertype"/>
     </resultMap>
 
     <select id="queryPswdByUname" resultType="java.lang.String">
         select pswd from dbdesign_5071.tbl_user_5071
+        where username = #{username}
+    </select>
+
+    <select id="queryTypeByUname" resultType="java.lang.String">
+        select usertype from dbdesign_5071.tbl_user_5071
         where username = #{username}
     </select>
     

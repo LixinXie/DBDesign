@@ -14,5 +14,18 @@
             </button>&nbsp;&nbsp;
         </div>
     </h3><br><br>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12" align="center">
+                <button type="button" value="信息查询">
+                    <a href="${pageContext.request.contextPath}/toQueryInfoHome?userId=${userId}&userType=管理员">信息查询</a>
+                </button><br><br>
+                <button type="button" value="录入信息">
+                    <a href="${pageContext.request.contextPath}/#?userId=${userId}&userType=管理员">信息录入</a>
+                </button><br><br>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

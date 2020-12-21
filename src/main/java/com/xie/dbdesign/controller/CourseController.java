@@ -35,8 +35,10 @@ public class CourseController {
     // 跳转到查询课程信息页面
     @RequestMapping("/toQueryCourseInfo")
     public String toQueryCourseInfo(Model model,
-                                    @RequestParam("userId") String userId){
+                                    @RequestParam("userId") String userId,
+                                    @RequestParam("userType") String userType){
         model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
         return "courseInfoQuery";
     }
 
@@ -44,7 +46,8 @@ public class CourseController {
     @RequestMapping("/queryCourseInfo")
     public String queryCourseInfo(Model model,
                                   @RequestParam("searchType") String searchType,
-                                  @RequestParam("searchText") String searchText){
+                                  @RequestParam("searchText") String searchText,
+                                  @RequestParam("userType") String userType){
         List<Course> courses = new ArrayList<>();
         Map<Course, Teacher> map = new HashMap<>();// 存课程和对应的教师
         switch (searchType){
@@ -72,6 +75,7 @@ public class CourseController {
             model.addAttribute("error", "未找到!");
         }
         model.addAttribute("resultMap", map);
+        model.addAttribute("userType", userType);
         return "courseInfoQuery";
     }
 

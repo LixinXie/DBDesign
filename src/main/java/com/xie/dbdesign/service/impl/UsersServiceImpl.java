@@ -15,4 +15,9 @@ public class UsersServiceImpl implements UsersService {
     public String queryPswdByUname(String username) {
         return usersMapper.queryPswdByUname(username);
     }
+
+    @Override
+    public String queryTypeByUname(String username) {
+        return usersMapper.queryTypeByUname(username);
+    }
 }

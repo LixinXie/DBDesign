@@ -48,8 +48,9 @@ public class LoginController {
         this.pswd = pwd;
         this.userType = ptype;
         String checkpswd = usersService.queryPswdByUname(userid);
+        String checktype = usersService.queryTypeByUname(userid);
         String homePage;
-        if(pwd.equals(checkpswd)){//登录成功
+        if(checkpswd != null && checktype != null && checktype.equals(ptype) && pwd.equals(checkpswd)){//登录成功
             // 将用户名放入model
             model.addAttribute("userId", userid);
             switch (ptype){

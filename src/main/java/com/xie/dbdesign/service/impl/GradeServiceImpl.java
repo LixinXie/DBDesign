@@ -64,4 +64,9 @@ public class GradeServiceImpl implements GradeService {
         return gradeMapper.queryGottenCredits(sNo);
     }
 
+    @Override
+    public Grade queryGradeBySnoCno(String sNo, String cNo) {
+        return gradeMapper.queryGradeBySnoCno(sNo, cNo);
+    }
+
 }

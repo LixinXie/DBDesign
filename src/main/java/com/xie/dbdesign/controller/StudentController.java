@@ -49,18 +49,16 @@ public class StudentController {
         this.teacherService = teacherService;
     }
 
-    // 回到学生主页
-    @RequestMapping(value = "/backStuHome")
-    public String backStuHome(Model model, @RequestParam("userId") String userId){
-        model.addAttribute("userId", userId);
-        return "studentHome";
-    }
+
 
     // 获取个人信息跳转到个人信息页
     @RequestMapping(value = "/showStuInfo", method = RequestMethod.GET)
     public String getUserInfo(Model model, @RequestParam("userId") String userId, String cName){
         Student stu = studentService.queryStudentBySno(userId);
-        Department dept =departmentService.queryDepartmentByDno(stu.getDNo());
+        Department dept = null;
+        if(stu != null){
+            dept =departmentService.queryDepartmentByDno(stu.getDNo());
+        }
         model.addAttribute("student", stu);
         model.addAttribute("department", dept);
         return "stuAInfo";
@@ -241,19 +239,13 @@ public class StudentController {
         return "selectCourse";
     }
 
-    // 跳转到查询各种信息页面
-    @RequestMapping("/toQueryInfoHome")
-    public String toQueryInfoHome(Model model,
-                                  @RequestParam("userId") String userId){
-        model.addAttribute("userId", userId);
-        return "queryInfoHome";
-    }
-
     // 跳转到查询学生信息页面
     @RequestMapping("/toQueryStudentInfo")
     public String toQueryStudentInfo(Model model,
-                                     @RequestParam("userId") String userId){
+                                     @RequestParam("userId") String userId,
+                                    @RequestParam("userType") String userType){
         model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
         return "studentInfoQuery";
     }
 
@@ -261,7 +253,8 @@ public class StudentController {
     @RequestMapping("/queryStudentInfo")
     public String queryStudentInfo(Model model,
                                    @RequestParam("searchType") String searchType,
-                                   @RequestParam("searchText") String searchText){
+                                   @RequestParam("searchText") String searchText,
+                                   @RequestParam("userType") String userType){
         List<Student> res = new ArrayList<>();
         switch (searchType){
             case "学号":
@@ -281,6 +274,7 @@ public class StudentController {
             model.addAttribute("error", "未找到!");
         }
         model.addAttribute("result", res);
+        model.addAttribute("userType", userType);
         return "studentInfoQuery";
     }
 

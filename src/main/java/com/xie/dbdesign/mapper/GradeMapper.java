@@ -37,5 +37,8 @@ public interface GradeMapper {
     // 根据学号查所获学分
     Double queryGottenCredits(String sNo);
 
+    // 根据学号和课程号查询成绩
+    Grade queryGradeBySnoCno(@Param("sNo") String sNo,@Param("cNo") String cNo);
+
 
 }

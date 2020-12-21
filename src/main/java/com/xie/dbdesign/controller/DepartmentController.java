@@ -24,15 +24,19 @@ public class DepartmentController {
     // 跳转到查询系信息页面
     @RequestMapping("/toQueryDepartmentInfo")
     public String toQueryDepartmentInfo(Model model,
-                                        @RequestParam("userId") String userId){
+                                        @RequestParam("userId") String userId,
+                                        @RequestParam("userType") String userType){
         model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
         return "departmentInfoQuery";
     }
 
+    // 查询系信息
     @RequestMapping("queryDepartmentInfo")
     public String queryDepartmentInfo(Model model,
                                       @RequestParam("searchType") String searchType,
-                                      @RequestParam("searchText") String searchText){
+                                      @RequestParam("searchText") String searchText,
+                                      @RequestParam("userType") String userType){
         List<Department> departments = new ArrayList<>();
         switch (searchType){
             case "系号":
@@ -51,6 +55,7 @@ public class DepartmentController {
             model.addAttribute("error", "未找到!");
         }
         model.addAttribute("departments", departments);
+        model.addAttribute("userType", userType);
         return "departmentInfoQuery";
     }
 }

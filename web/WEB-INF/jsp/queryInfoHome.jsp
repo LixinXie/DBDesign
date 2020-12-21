@@ -7,7 +7,7 @@
     <h5>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button">
-            <a href="${pageContext.request.contextPath}/backStuHome?userId=${userId}">回到主页</a>
+            <a href="${pageContext.request.contextPath}/backHome?userId=${userId}&userType=${userType}">回到主页</a>
         </button>
     </h5>
     <br><br>
@@ -17,16 +17,16 @@
         <div class="row-fluid">
             <div class="span12" align="center">
                 <button value="查询学生">
-                    <a href="${pageContext.request.contextPath}/toQueryStudentInfo?userId=${userId}">查询学生</a>
+                    <a href="${pageContext.request.contextPath}/toQueryStudentInfo?userId=${userId}&userType=${userType}">查询学生</a>
                 </button><br><br>
                 <button value="查询课程">
-                    <a href="${pageContext.request.contextPath}/toQueryCourseInfo?userId=${userId}">查询课程</a>
+                    <a href="${pageContext.request.contextPath}/toQueryCourseInfo?userId=${userId}&userType=${userType}">查询课程</a>
                 </button><br><br>
                 <button value="查询教师">
-                    <a href="${pageContext.request.contextPath}/toQueryTeacherInfo?userId=${userId}">查询教师</a>
+                    <a href="${pageContext.request.contextPath}/toQueryTeacherInfo?userId=${userId}&userType=${userType}">查询教师</a>
                 </button><br><br>
                 <button value="查询系别">
-                    <a href="${pageContext.request.contextPath}/toQueryDepartmentInfo?userId=${userId}">查询系别</a>
+                    <a href="${pageContext.request.contextPath}/toQueryDepartmentInfo?userId=${userId}&userType=${userType}">查询系别</a>
                 </button><br><br>
             </div>
         </div>

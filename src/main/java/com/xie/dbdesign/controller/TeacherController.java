@@ -24,15 +24,18 @@ public class TeacherController {
     // 跳转到查询教职工信息页面
     @RequestMapping("/toQueryTeacherInfo")
     public String toQueryTeacherInfo(Model model,
-                                     @RequestParam("userId") String userId){
+                                     @RequestParam("userId") String userId,
+                                     @RequestParam("userType") String userType){
         model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
         return "teacherInfoQuery";
     }
     // 查询教师信息
     @RequestMapping("/queryTeacherInfo")
     public String queryTeacherInfo(Model model,
                                    @RequestParam("searchType") String searchType,
-                                   @RequestParam("searchText") String searchText){
+                                   @RequestParam("searchText") String searchText,
+                                   @RequestParam("userType") String userType){
         List<Teacher> teachers = new ArrayList<>();
         switch (searchType){
             case "职工号":
@@ -52,6 +55,9 @@ public class TeacherController {
             model.addAttribute("error", "未找到!");
         }
         model.addAttribute("teachers", teachers);
+        model.addAttribute("userType", userType);
         return "teacherInfoQuery";
     }
+
+
 }

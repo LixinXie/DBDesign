@@ -32,7 +32,7 @@
                     <a href="${pageContext.request.contextPath}/toSelectCourse?userId=${userId}">个人选课</a>
                 </button><br><br>
                 <button type="button" value="信息查询">
-                    <a href="${pageContext.request.contextPath}/toQueryInfoHome?userId=${userId}">信息查询</a>
+                    <a href="${pageContext.request.contextPath}/toQueryInfoHome?userId=${userId}&userType=学生">信息查询</a>
                 </button>
             </div>
         </div>

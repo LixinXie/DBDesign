@@ -14,5 +14,17 @@
             </button>&nbsp;&nbsp;
         </div>
     </h3><br><br>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12" align="center">
+                <button type="button" value="信息查询">
+                    <a href="${pageContext.request.contextPath}/toQueryInfoHome?userId=${userId}&userType=教职工">信息查询</a>
+                </button><br><br>
+                <button type="button" value="成绩管理">
+                    <a href="${pageContext.request.contextPath}/toManageGrade?userId=${userId}&userType=教职工">成绩管理</a>
+                </button><br><br>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -17,12 +17,17 @@
     <h5>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button">
-            <a href="${pageContext.request.contextPath}/backStuHome?userId=${userId}">回到主页</a>
+            <a href="${pageContext.request.contextPath}/backHome?userId=${userId}&userType=${userType}">回到主页</a>
+        </button>&nbsp;&nbsp;
+        <button type="button">
+            <a href="${pageContext.request.contextPath}/toQueryInfoHome?userId=${userId}&userType=${userType}">回到上一级</a>
         </button>
     </h5>
     <br><br>
     <div align="center">
         <form class="form-inline" action="${pageContext.request.contextPath}/queryTeacherInfo" method="post">
+            <input type="hidden" name="userId" value="${userId}">
+            <input type="hidden" name="userType" value="${userType}">
             按
             <select name="searchType">
                 <option>职工号</option>

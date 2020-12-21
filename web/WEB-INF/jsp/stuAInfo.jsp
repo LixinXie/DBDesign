@@ -10,7 +10,7 @@
     <h5>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button">
-            <a href="${pageContext.request.contextPath}/backStuHome?userId=${student.SNo}">回到主页</a>
+            <a href="${pageContext.request.contextPath}/backHome?userId=${student.SNo}&userType=学生">回到主页</a>
         </button>
     </h5>
     <div class="container">

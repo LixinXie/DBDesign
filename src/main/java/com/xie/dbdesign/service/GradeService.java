@@ -1,6 +1,7 @@
 package com.xie.dbdesign.service;
 
 import com.xie.dbdesign.entity.Grade;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -35,4 +36,7 @@ public interface GradeService {
 
     // 根据学号查所获学分
     Double queryGottenCredits(String Sno);
+
+    // 根据学号和课程号查询成绩
+    Grade queryGradeBySnoCno(String sNo, String cNo);
 }
