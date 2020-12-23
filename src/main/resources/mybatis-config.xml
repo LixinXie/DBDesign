@@ -20,6 +20,7 @@
         <mapper resource="com/xie/dbdesign/mapper/StudentMapper.xml"/>
         <mapper resource="com/xie/dbdesign/mapper/TeacherMapper.xml"/>
         <mapper resource="com/xie/dbdesign/mapper/UsersMapper.xml"/>
+        <mapper resource="com/xie/dbdesign/mapper/GradeViewMapper.xml"/>
     </mappers>
 
 </configuration>

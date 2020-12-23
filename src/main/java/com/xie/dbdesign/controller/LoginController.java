@@ -44,6 +44,8 @@ public class LoginController {
                         @RequestParam("userid") String userid,
                         @RequestParam("pswd") String pwd,
                         @RequestParam("ptype") String ptype){
+        // 将用户名放入model
+        model.addAttribute("userId", userid);
         this.uname = userid;
         this.pswd = pwd;
         this.userType = ptype;
@@ -51,8 +53,6 @@ public class LoginController {
         String checktype = usersService.queryTypeByUname(userid);
         String homePage;
         if(checkpswd != null && checktype != null && checktype.equals(ptype) && pwd.equals(checkpswd)){//登录成功
-            // 将用户名放入model
-            model.addAttribute("userId", userid);
             switch (ptype){
                 case "教职工":
                     homePage = "teacherHome";

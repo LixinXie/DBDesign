@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xie.dbdesign.mapper.GradeViewMapper">
+    <resultMap id="GradeViewResultMap" type="GradeView">
+        <result column="s_no" property="sNo"/>
+        <result column="s_name" property="sName"/>
+        <result column="s_sex" property="sSex"/>
+        <result column="d_no" property="dNo"/>
+        <result column="d_name" property="dName"/>
+        <result column="c_no" property="cNo"/>
+        <result column="c_name" property="cName"/>
+        <result column="t_name" property="tName"/>
+        <result column="c_hour" property="cHour"/>
+        <result column="c_credit" property="cCredit"/>
+        <result column="c_time" property="cTime"/>
+        <result column="c_site" property="cSite"/>
+        <result column="c_testtime" property="cTestTime"/>
+        <result column="usual_grade" property="usualGrade"/>
+        <result column="test_grade" property="testGrade"/>
+        <result column="general_grade" property="generalGrade"/>
+    </resultMap>
+
+    <select id="queryGradeViewBySno" resultMap="GradeViewResultMap">
+        select * from dbdesign_5071.View_Grade
+        where s_no = #{sNo}
+    </select>
+
+    <select id="queryGradeViewBySname" resultMap="GradeViewResultMap">
+        select * from dbdesign_5071.View_Grade
+        where s_name like '%' #{sName} '%'
+    </select>
+
+    <select id="queryGradeViewByCno" resultMap="GradeViewResultMap">
+        select * from dbdesign_5071.View_Grade
+        where c_no = #{cNo}
+    </select>
+
+    <select id="queryGradeViewByCname" resultMap="GradeViewResultMap">
+        select * from dbdesign_5071.View_Grade
+        where c_name = #{cName}
+    </select>
+    
+    <select id="queryGradeViewByTname" resultMap="GradeViewResultMap">
+        select * from dbdesign_5071.View_Grade
+        where t_name like '%' #{tName} '%'
+    </select>
+
+    <select id="queryGradeViewByDno" resultMap="GradeViewResultMap">
+        select * from dbdesign_5071.View_Grade
+        where d_no = #{dNo}
+    </select>
+
+    <select id="queryALLGradeView" resultMap="GradeViewResultMap">
+        select * from dbdesign_5071.View_Grade
+    </select>
+</mapper>

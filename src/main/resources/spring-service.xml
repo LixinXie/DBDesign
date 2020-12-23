@@ -28,6 +28,9 @@
     <bean id="usersServiceImpl" class="com.xie.dbdesign.service.impl.UsersServiceImpl">
         <property name="usersMapper" ref="usersMapper"/>
     </bean>
+    <bean id="gradeViewServiceImpl" class="com.xie.dbdesign.service.impl.GradeViewServiceImpl">
+        <property name="gradeViewMapper" ref="gradeViewMapper"/>
+    </bean>
     <!--3.声明式事务配置-->
     <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <!--注入数据源-->

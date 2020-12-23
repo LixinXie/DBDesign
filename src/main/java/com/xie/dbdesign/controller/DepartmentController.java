@@ -36,6 +36,7 @@ public class DepartmentController {
     public String queryDepartmentInfo(Model model,
                                       @RequestParam("searchType") String searchType,
                                       @RequestParam("searchText") String searchText,
+                                      @RequestParam("userId") String userId,
                                       @RequestParam("userType") String userType){
         List<Department> departments = new ArrayList<>();
         switch (searchType){
@@ -55,6 +56,7 @@ public class DepartmentController {
             model.addAttribute("error", "未找到!");
         }
         model.addAttribute("departments", departments);
+        model.addAttribute("userId", userId);
         model.addAttribute("userType", userType);
         return "departmentInfoQuery";
     }

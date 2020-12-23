@@ -2,14 +2,19 @@ package com.xie.dbdesign.controller;
 
 
 import com.xie.dbdesign.entity.Grade;
+import com.xie.dbdesign.entity.GradeView;
 import com.xie.dbdesign.service.CourseService;
 import com.xie.dbdesign.service.GradeService;
+import com.xie.dbdesign.service.GradeViewService;
 import com.xie.dbdesign.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -18,6 +23,7 @@ public class GradeController {
     private GradeService gradeService;
     private TeacherService teacherService;
     private CourseService courseService;
+    private GradeViewService gradeViewService;
 
     @Autowired
     public void setGradeService(GradeService gradeService) {
@@ -32,6 +38,11 @@ public class GradeController {
     @Autowired
     public void setCourseService(CourseService courseService) {
         this.courseService = courseService;
+    }
+
+    @Autowired
+    public void setGradeViewService(GradeViewService gradeViewService) {
+        this.gradeViewService = gradeViewService;
     }
 
     // 到成绩管理页面
@@ -139,6 +150,84 @@ public class GradeController {
         }
         model.addAttribute("currGrade", curr);
         return "updateGrade";
+    }
+
+    // 跳转到查询成绩页面
+    @RequestMapping("/toQueryGradeInfo")
+    public String toQueryGradeInfo(Model model,
+                                   @RequestParam("userId") String userId,
+                                   @RequestParam("userType") String userType){
+        model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
+        return "gradeInfoQuery";
+    }
+
+    @RequestMapping("/queryGradeInfo")
+    public String queryGradeInfo(Model model,
+                                 @RequestParam("userId") String userId,
+                                 @RequestParam("userType") String userType,
+                                 @RequestParam("searchType") String searchType,
+                                 @RequestParam("searchText") String searchText){
+        List<GradeView> res = new ArrayList<>();
+        List<GradeView> temp;
+        switch (searchType){
+            case "学号":
+                temp = gradeViewService.queryGradeViewBySno(searchText);
+                for (GradeView grade : temp) {
+                    if(grade != null){
+                        res.add(grade);
+                    }
+                }
+                break;
+            case "学生姓名":
+                temp = gradeViewService.queryGradeViewBySname(searchText);
+                for (GradeView grade : temp) {
+                    if(grade != null){
+                        res.add(grade);
+                    }
+                }
+                break;
+            case "课程号":
+                temp = gradeViewService.queryGradeViewByCno(searchText);
+                for (GradeView grade : temp) {
+                    if(grade != null){
+                        res.add(grade);
+                    }
+                }
+                break;
+            case "课程名称":
+                temp = gradeViewService.queryGradeViewByCname(searchText);
+                for (GradeView grade : temp) {
+                    if(grade != null){
+                        res.add(grade);
+                    }
+                }
+                break;
+            case "任课教师名":
+                temp = gradeViewService.queryGradeViewByTname(searchText);
+                for (GradeView grade : temp) {
+                    if(grade != null){
+                        res.add(grade);
+                    }
+                }
+                break;
+            case "系号":
+                temp = gradeViewService.queryGradeViewByDno(searchText);
+                for (GradeView grade : temp) {
+                    if(grade != null){
+                        res.add(grade);
+                    }
+                }
+                break;
+            default:break;
+        }
+        if(res.size() == 0){
+            model.addAttribute("error", "未找到!");
+        }
+        model.addAttribute("GradeResult", res);
+        model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
+        return "gradeInfoQuery";
     }
 
 }

@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>信息查询</title>
+    <%--BootStrap--%>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <h5>

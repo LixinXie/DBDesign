@@ -254,6 +254,7 @@ public class StudentController {
     public String queryStudentInfo(Model model,
                                    @RequestParam("searchType") String searchType,
                                    @RequestParam("searchText") String searchText,
+                                   @RequestParam("userId") String userId,
                                    @RequestParam("userType") String userType){
         List<Student> res = new ArrayList<>();
         switch (searchType){
@@ -274,6 +275,7 @@ public class StudentController {
             model.addAttribute("error", "未找到!");
         }
         model.addAttribute("result", res);
+        model.addAttribute("userId", userId);
         model.addAttribute("userType", userType);
         return "studentInfoQuery";
     }

@@ -160,4 +160,12 @@ public class MyTest {
         System.out.println(service.queryPswdByUname("3118005071"));
     }
 
+    @Test
+    public void testGradeView(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        GradeViewService service = (GradeViewService) context.getBean("gradeViewServiceImpl");
+        //System.out.println(service.queryALLGradeView());
+        System.out.println(service.queryGradeViewBySno("1111"));
+    }
+
 }

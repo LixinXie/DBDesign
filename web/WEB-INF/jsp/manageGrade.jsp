@@ -22,6 +22,10 @@
             <div align="center">
                 <a class="btn btn-primary"
                    href="${pageContext.request.contextPath}/toInputSnoCno?userId=${userId}&userType=${userType}">修改成绩</a>
+            </div><br>
+            <div align="center">
+                <a class="btn btn-primary"
+                   href="${pageContext.request.contextPath}/toQueryGradeInfo?userId=${userId}&userType=${userType}">查询成绩</a>
             </div>
         </div>
     </div>
