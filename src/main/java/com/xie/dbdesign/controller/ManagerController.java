@@ -194,6 +194,7 @@ public class ManagerController {
         return "addCourseInfo";
     }
 
+    // 录入课程信息
     @RequestMapping("/addCourseInfo")
     public String addCourseInfo(Model model,
                                 @RequestParam("userId") String userId,

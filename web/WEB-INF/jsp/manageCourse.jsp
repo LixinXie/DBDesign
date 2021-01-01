@@ -16,7 +16,7 @@
         <div class="row-fluid">
             <div class="span12" align="center">
                 <button type="button" value="录入课程信息">
-                    <a href="${pageContext.request.contextPath}/#t?userId=${userId}&userType=管理员">录入课程信息</a>
+                    <a href="${pageContext.request.contextPath}/#?userId=${userId}&userType=管理员">录入课程信息</a>
                 </button><br><br>
                 <button type="button" value="修改课程信息">
                     <a href="${pageContext.request.contextPath}/#?userId=${userId}&userType=管理员">修改课程信息</a>

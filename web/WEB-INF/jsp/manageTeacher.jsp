@@ -13,10 +13,10 @@
         </button>&nbsp;&nbsp;
     </h5>
     <div class="span12" align="center">
-        <button type="button" value="录入学生信息">
+        <button type="button" value="录入教职工信息">
             <a href="${pageContext.request.contextPath}/#t?userId=${userId}&userType=管理员">录入教职工信息</a>
         </button><br><br>
-        <button type="button" value="修改学生信息">
+        <button type="button" value="修改教职工信息">
             <a href="${pageContext.request.contextPath}/#?userId=${userId}&userType=管理员">修改教职工信息</a>
         </button><br><br>
     </div>
