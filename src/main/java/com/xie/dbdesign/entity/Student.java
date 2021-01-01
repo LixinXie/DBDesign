@@ -19,5 +19,7 @@ public class Student {
     private double enrollGrade;
     // 所在系号
     private String dNo;
+    // 学生状态
+    private String sStatus;
 
 }

@@ -11,13 +11,14 @@
         <result column="s_sex" property="sSex"/>
         <result column="enroll_grade" property="enrollGrade"/>
         <result column="d_no" property="dNo"/>
+        <result column="s_status" property="sStatus"/>
     </resultMap>
 
     <insert id="addStudent" parameterType="Student">
         insert into
-            dbdesign_5071.tbl_student_5071(s_no, s_name, s_birthday, s_sex, enroll_grade, d_no)
+            dbdesign_5071.tbl_student_5071(s_no, s_name, s_birthday, s_sex, enroll_grade, d_no, s_status)
         values
-            (#{sNo}, #{sName}, #{sBirthday}, #{sSex}, #{enrollGrade}, #{dNo})
+            (#{sNo}, #{sName}, #{sBirthday}, #{sSex}, #{enrollGrade}, #{dNo}, #{sStatus})
     </insert>
 
     <update id="updateStudent" parameterType="Student">
@@ -27,7 +28,8 @@
             s_birthday = #{sBirthday},
             s_sex = #{sSex},
             enroll_grade = #{enrollGrade},
-            d_no = #{dNo}
+            d_no = #{dNo},
+            s_status = #{sStatus}
         where
             s_no = #{sNo}
     </update>

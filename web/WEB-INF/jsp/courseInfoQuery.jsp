@@ -56,6 +56,7 @@
                         <th>上课时间</th>
                         <th>上课地点</th>
                         <th>考试时间</th>
+                        <th>已选课人数</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -70,6 +71,7 @@
                             <td>${course.CTime}</td>
                             <td>${course.CSite}</td>
                             <td>${course.CTestTime}</td>
+                            <td>${course.CSelectedNum}</td>
                         </tr>
                     </c:forEach>
 

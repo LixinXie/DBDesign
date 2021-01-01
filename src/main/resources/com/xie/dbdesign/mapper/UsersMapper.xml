@@ -10,6 +10,29 @@
         <result column="usertype" property="usertype"/>
     </resultMap>
 
+    <insert id="addUser" parameterType="Users">
+        insert into dbdesign_5071.tbl_user_5071(username, pswd, usertype)
+        values(#{username}, #{pswd}, #{usertype})
+    </insert>
+
+    <update id="updateUser" parameterType="Users">
+        update dbdesign_5071.tbl_user_5071
+        set pswd = #{pswd}, usertype = #{usertype}
+        where username = #{username}
+    </update>
+
+    <delete id="deleteUserByUsername">
+        delete from dbdesign_5071.tbl_user_5071 where username = #{username}
+    </delete>
+
+    <select id="queryUserByUsername" resultMap="UsersResultMap">
+        select * from dbdesign_5071.tbl_user_5071 where username = #{username}
+    </select>
+
+    <select id="queryAllUser" resultMap="UsersResultMap">
+        select * from dbdesign_5071.tbl_user_5071
+    </select>
+
     <select id="queryPswdByUname" resultType="java.lang.String">
         select pswd from dbdesign_5071.tbl_user_5071
         where username = #{username}

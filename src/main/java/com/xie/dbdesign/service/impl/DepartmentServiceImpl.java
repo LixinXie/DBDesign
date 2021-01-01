@@ -4,6 +4,8 @@ import com.xie.dbdesign.entity.Department;
 import com.xie.dbdesign.mapper.DepartmentMapper;
 import com.xie.dbdesign.service.DepartmentService;
 
+import java.util.List;
+
 public class DepartmentServiceImpl implements DepartmentService {
 
     DepartmentMapper departmentMapper;
@@ -35,5 +37,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Department queryDepartmentByDname(String dName) {
         return departmentMapper.queryDepartmentByDname(dName);
+    }
+
+    @Override
+    public List<Department> queryAllDepartment() {
+        return departmentMapper.queryAllDepartment();
     }
 }

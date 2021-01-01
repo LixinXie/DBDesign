@@ -23,5 +23,7 @@ public class Course {
     private String cSite;
     // 考试时间
     private Timestamp cTestTime;
+    // 已选课人数
+    private int cSelectedNum;
 
 }

@@ -71,6 +71,8 @@ public class MyTest {
         service.updateDepartment(dep);*/
 
         //service.deleteDepartmentByDno("0002");
+
+        //System.out.println(service.queryAllDepartment());
     }
 
     @Test
@@ -85,8 +87,8 @@ public class MyTest {
         //System.out.println(service.queryGradeByDno("0001"));
 
         /*Grade grade = new Grade();
-        grade.setuserId("2222");
-        grade.setCNo("dddd");
+        grade.setSNo("2222");
+        grade.setCNo("eeee");
         grade.setUsualGrade(85);
         grade.setTestGrade(90);
         grade.setGeneralGrade(90);
@@ -157,7 +159,12 @@ public class MyTest {
     public void testUsers(){
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         UsersService service = (UsersService) context.getBean("usersServiceImpl");
-        System.out.println(service.queryPswdByUname("3118005071"));
+        //System.out.println(service.queryPswdByUname("3118005071"));
+        /*Users user = new Users();
+        user.setUsername("13579");
+        user.setPswd("13579");
+        user.setUsertype("学生");
+        service.addUser(user);*/
     }
 
     @Test
