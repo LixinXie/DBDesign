@@ -16,7 +16,7 @@
     <div align="center" style="margin: 100px auto">
         <h4>请输入学号和课程号</h4><br>
         <form action="${pageContext.request.contextPath}/toUpdateGrade?userId=${userId}&userType=${userType}" method="post">
-            <span style="color: red; font-weight: bold">${msg}</span><br>
+            <span style="color: red; font-weight: bold">${msg}</span>
             学号:&nbsp;&nbsp; <input type="text" name="sNo" required><br><br>
             课程号: <input type="text" name="cNo" required><br><br>
             <input type="submit" value="确定">

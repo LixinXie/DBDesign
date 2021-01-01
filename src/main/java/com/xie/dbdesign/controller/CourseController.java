@@ -47,7 +47,6 @@ public class CourseController {
     public String queryCourseInfo(Model model,
                                   @RequestParam("searchType") String searchType,
                                   @RequestParam("searchText") String searchText,
-                                  @RequestParam("userId") String userId,
                                   @RequestParam("userType") String userType){
         List<Course> courses = new ArrayList<>();
         Map<Course, Teacher> map = new HashMap<>();// 存课程和对应的教师
@@ -76,7 +75,6 @@ public class CourseController {
             model.addAttribute("error", "未找到!");
         }
         model.addAttribute("resultMap", map);
-        model.addAttribute("userId", userId);
         model.addAttribute("userType", userType);
         return "courseInfoQuery";
     }

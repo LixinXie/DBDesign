@@ -23,36 +23,36 @@
     </resultMap>
 
     <select id="queryGradeViewBySno" resultMap="GradeViewResultMap">
-        select * from dbdesign_5071.View_Grade
+        select * from dbdesign_5071.View_Grade_5071
         where s_no = #{sNo}
     </select>
 
     <select id="queryGradeViewBySname" resultMap="GradeViewResultMap">
-        select * from dbdesign_5071.View_Grade
+        select * from dbdesign_5071.View_Grade_5071
         where s_name like '%' #{sName} '%'
     </select>
 
     <select id="queryGradeViewByCno" resultMap="GradeViewResultMap">
-        select * from dbdesign_5071.View_Grade
+        select * from dbdesign_5071.View_Grade_5071
         where c_no = #{cNo}
     </select>
 
     <select id="queryGradeViewByCname" resultMap="GradeViewResultMap">
-        select * from dbdesign_5071.View_Grade
+        select * from dbdesign_5071.View_Grade_5071
         where c_name = #{cName}
     </select>
     
     <select id="queryGradeViewByTname" resultMap="GradeViewResultMap">
-        select * from dbdesign_5071.View_Grade
+        select * from dbdesign_5071.View_Grade_5071
         where t_name like '%' #{tName} '%'
     </select>
 
     <select id="queryGradeViewByDno" resultMap="GradeViewResultMap">
-        select * from dbdesign_5071.View_Grade
+        select * from dbdesign_5071.View_Grade_5071
         where d_no = #{dNo}
     </select>
 
     <select id="queryALLGradeView" resultMap="GradeViewResultMap">
-        select * from dbdesign_5071.View_Grade
+        select * from dbdesign_5071.View_Grade_5071
     </select>
 </mapper>

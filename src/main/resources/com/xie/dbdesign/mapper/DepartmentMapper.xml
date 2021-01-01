@@ -35,5 +35,9 @@
         select * from dbdesign_5071.tbl_dept_5071
         where d_name = #{cName}
     </select>
+
+    <select id="queryAllDepartment" resultMap="DepartmentResultMap">
+        select * from dbdesign_5071.tbl_dept_5071
+    </select>
     
 </mapper>

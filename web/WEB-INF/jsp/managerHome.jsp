@@ -20,8 +20,17 @@
                 <button type="button" value="信息查询">
                     <a href="${pageContext.request.contextPath}/toQueryInfoHome?userId=${userId}&userType=管理员">信息查询</a>
                 </button><br><br>
-                <button type="button" value="录入信息">
-                    <a href="${pageContext.request.contextPath}/#?userId=${userId}&userType=管理员">信息录入</a>
+                <button type="button" value="管理学生">
+                    <a href="${pageContext.request.contextPath}/toManageStudent?userId=${userId}&userType=管理员">管理学生</a>
+                </button><br><br>
+                <button type="button" value="管理课程">
+                    <a href="${pageContext.request.contextPath}/toManageCourse?userId=${userId}&userType=管理员">管理课程</a>
+                </button><br><br>
+                <button type="button" value="管理教职工">
+                    <a href="${pageContext.request.contextPath}/toManageTeacher?userId=${userId}&userType=管理员">管理教职工</a>
+                </button><br><br>
+                <button type="button" value="管理系别">
+                    <a href="${pageContext.request.contextPath}/toManageDepartment?userId=${userId}&userType=管理员">管理系别</a>
                 </button><br><br>
             </div>
         </div>

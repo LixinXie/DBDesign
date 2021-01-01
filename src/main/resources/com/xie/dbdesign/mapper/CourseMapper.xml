@@ -13,13 +13,14 @@
         <result column="c_time" property="cTime"/>
         <result column="c_site" property="cSite"/>
         <result column="c_testtime" property="cTestTime"/>
+        <result column="c_selected_num" property="cSelectedNum"/>
     </resultMap>
 
     <insert id="addCourse" parameterType="Course">
         insert into
-            dbdesign_5071.tbl_course_5071(c_no, c_name, t_no, c_hour, c_credit, c_time, c_site, c_testtime)
+            dbdesign_5071.tbl_course_5071(c_no, c_name, t_no, c_hour, c_credit, c_time, c_site, c_testtime, c_selected_num)
         values
-            (#{cNo}, #{cName}, #{tNo}, #{cHour}, #{cCredit}, #{cTime}, #{cSite}, #{cTestTime})
+            (#{cNo}, #{cName}, #{tNo}, #{cHour}, #{cCredit}, #{cTime}, #{cSite}, #{cTestTime}, #{cSelectedNum})
     </insert>
 
     <delete id="deleteCourseByCno">
@@ -36,6 +37,7 @@
             c_time = #{cTime},
             c_site = #{cSite},
             c_testtime = #{cTestTime}
+            c_selected_num = #{cSelectedNum}
         where c_no = #{cNo}
     </update>
 
@@ -54,7 +56,7 @@
     </select>
 
     <select id="queryCourseByTname" resultMap="CourseResultMap">
-        select c_no, c_name, tbl_course_5071.t_no, c_hour, c_credit, c_time, c_site, c_testtime
+        select c_no, c_name, tbl_course_5071.t_no, c_hour, c_credit, c_time, c_site, c_testtime, c_selected_num
         from dbdesign_5071.tbl_course_5071, dbdesign_5071.tbl_teacher_5071
         where tbl_course_5071.t_no = tbl_teacher_5071.t_no and t_name like '%' #{tName} '%'
     </select>

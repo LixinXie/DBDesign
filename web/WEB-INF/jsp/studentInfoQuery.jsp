@@ -53,6 +53,7 @@
                         <th>性别</th>
                         <th>入学成绩</th>
                         <th>系号</th>
+                        <th>状态</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -64,6 +65,7 @@
                             <td>${student.SSex}</td>
                             <td>${student.enrollGrade}</td>
                             <td>${student.DNo}</td>
+                            <td>${student.SStatus}</td>
                         </tr>
                     </c:forEach>
 
