@@ -9,7 +9,7 @@ public class Course {
 
     // 课程号
     private String cNo;
-    // 课程号
+    // 课程名
     private String cName;
     // 任课教师号
     private String tNo;

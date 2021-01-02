@@ -42,7 +42,7 @@
             <div class="form-group">
                 <label for="ssex">性别: </label>
                 <select id="ssex" name="sSex">
-                    <option value="${currStudent.SSex}" selected="selected">当前性别</option>
+                    <option value="${currStudent.SSex}" selected="selected">-</option>
                     <option value="男">男</option>
                     <option value="女">女</option>
                 </select>
@@ -54,7 +54,7 @@
             <div class="form-group">
                 <label for="dno">系: </label>
                 <select id="dno" name="dNo">
-                    <option value="${currStudent.DNo}" selected="selected">当前系</option>
+                    <option value="${currStudent.DNo}" selected="selected">-</option>
                     <option value="0001">计算机学院</option>
                     <option value="0002">应用数学学院</option>
                     <option value="0003">机电工程学院</option>
@@ -67,7 +67,7 @@
             <div class="form-group">
                 <label for="sstatus">状态: </label>
                 <select id="sstatus" name="sStatus">
-                    <option value="${currStudent.SStatus}" selected>当前状态</option>
+                    <option value="${currStudent.SStatus}" selected>-</option>
                     <option value="在读">在读</option>
                     <option value="毕业">毕业</option>
                 </select>

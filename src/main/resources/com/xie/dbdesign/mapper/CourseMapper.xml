@@ -36,7 +36,7 @@
             c_credit = #{cCredit},
             c_time = #{cTime},
             c_site = #{cSite},
-            c_testtime = #{cTestTime}
+            c_testtime = #{cTestTime},
             c_selected_num = #{cSelectedNum}
         where c_no = #{cNo}
     </update>

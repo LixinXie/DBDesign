@@ -26,8 +26,8 @@
                 <button type="button" value="管理课程">
                     <a href="${pageContext.request.contextPath}/toManageCourse?userId=${userId}&userType=管理员">管理课程</a>
                 </button><br><br>
-                <button type="button" value="管理教职工">
-                    <a href="${pageContext.request.contextPath}/toManageTeacher?userId=${userId}&userType=管理员">管理教职工</a>
+                <button type="button" value="管理教师">
+                    <a href="${pageContext.request.contextPath}/toManageTeacher?userId=${userId}&userType=管理员">管理教师</a>
                 </button><br><br>
                 <button type="button" value="管理系别">
                     <a href="${pageContext.request.contextPath}/toManageDepartment?userId=${userId}&userType=管理员">管理系别</a>

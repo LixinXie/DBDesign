@@ -1,11 +1,7 @@
 package com.xie.dbdesign.controller;
 
-import com.xie.dbdesign.entity.Department;
-import com.xie.dbdesign.entity.Student;
-import com.xie.dbdesign.entity.Users;
-import com.xie.dbdesign.service.DepartmentService;
-import com.xie.dbdesign.service.StudentService;
-import com.xie.dbdesign.service.UsersService;
+import com.xie.dbdesign.entity.*;
+import com.xie.dbdesign.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -21,6 +21,18 @@ public class ManagerController {
     StudentService studentService;
     UsersService usersService;
     DepartmentService departmentService;
+    CourseService courseService;
+    TeacherService teacherService;
+
+    @Autowired
+    public void setTeacherService(TeacherService teacherService) {
+        this.teacherService = teacherService;
+    }
+
+    @Autowired
+    public void setCourseService(CourseService courseService) {
+        this.courseService = courseService;
+    }
 
     @Autowired
     public void setDepartmentService(DepartmentService departmentService) {
@@ -198,10 +210,131 @@ public class ManagerController {
     @RequestMapping("/addCourseInfo")
     public String addCourseInfo(Model model,
                                 @RequestParam("userId") String userId,
-                                @RequestParam("userType") String userType){
+                                @RequestParam("userType") String userType,
+                                @RequestParam("cNo") String cNo,
+                                @RequestParam("cName") String cName,
+                                @RequestParam("tNo") String tNo,
+                                @RequestParam("cHour") Integer cHour,
+                                @RequestParam("cCredit") Double cCredit,
+                                @RequestParam("cTime") String cTime,
+                                @RequestParam("cSite") String cSite,
+                                @RequestParam("cTestTime") String cTestTime) throws ParseException {
         model.addAttribute("userId", userId);
         model.addAttribute("userType", userType);
+        String msg = "";
+        Course c = courseService.queryCourseByCno(cNo);
+        if(c != null){
+            msg = "已存在该课程信息，添加失败!";
+        }else{
+            Teacher t = teacherService.queryTeacherByTno(tNo);
+            if(t == null){
+                msg = "不存在该教师，录入失败，请重新输入任课教师号!";
+            }else{
+                Course course = new Course();
+                course.setCNo(cNo);
+                course.setCName(cName);
+                course.setTNo(tNo);
+                course.setCHour(cHour);
+                course.setCCredit(cCredit);
+                course.setCTime(cTime);
+                course.setCSite(cSite);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+                java.util.Date date = simpleDateFormat.parse(cTestTime);
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                if(date != null){
+                    timestamp = new Timestamp(date.getTime());
+                }
+                course.setCTestTime(timestamp);
+                course.setCSelectedNum(0);
+                int res = courseService.addCourse(course);
+                if(res > 0){
+                    msg = "录入成功!";
+                }else{
+                    msg = "录入失败!";
+                }
+            }
+        }
+        model.addAttribute("addCourseMsg", msg);
         return "addCourseInfo";
+    }
+    // 跳转到输入课程号修改页面
+    @RequestMapping("/toInputCno")
+    public String toInputCno(Model model,
+                             @RequestParam("userId") String userId,
+                             @RequestParam("userType") String userType){
+        model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
+        return "toInputCnoUpdateCourseInfo";
+    }
+
+    // 跳转到修改课程信息页面
+    @RequestMapping("/toUpdateCourseInfo")
+    public String toUpdateCourseInfo(Model model,
+                                     @RequestParam("userId") String userId,
+                                     @RequestParam("userType") String userType,
+                                     @RequestParam("cNo") String cNo){
+        model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
+        Course course = courseService.queryCourseByCno(cNo);
+        if(course == null){
+            model.addAttribute("msg", "未找到该课程信息!请重新输入课程号!");
+            return "toInputCnoUpdateCourseInfo";
+        }else{
+            Timestamp timestamp = course.getCTestTime();
+            LocalDateTime localDateTime = timestamp.toLocalDateTime();
+            String testTime = localDateTime.toString();
+            model.addAttribute("currCourse", course);
+            model.addAttribute("currCourseTestTime", testTime);
+        }
+        return "updateCourseInfo";
+    }
+
+    // 修改课程信息
+    @RequestMapping("/updateCourseInfo")
+    public String updateCourseInfo(Model model,
+                                   @RequestParam("userId") String userId,
+                                   @RequestParam("userType") String userType,
+                                   @RequestParam("cNo") String cNo,
+                                   @RequestParam("cName") String cName,
+                                   @RequestParam("tNo") String tNo,
+                                   @RequestParam("cHour") Integer cHour,
+                                   @RequestParam("cCredit") Double cCredit,
+                                   @RequestParam("cTime") String cTime,
+                                   @RequestParam("cSite") String cSite,
+                                   @RequestParam("cTestTime") String cTestTime,
+                                   @RequestParam("cSelectedNum") Integer cSelectedNum) throws ParseException {
+        model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
+        Teacher t = teacherService.queryTeacherByTno(tNo);
+        if(t == null){
+            String msg = "不存在该教师，录入失败，请重新输入任课教师号!";
+            model.addAttribute("updateCourseMsg", msg);
+        }else{
+            // 创建新课程对象
+            Course course = new Course();
+            course.setCNo(cNo);
+            course.setCName(cName);
+            course.setTNo(tNo);
+            course.setCHour(cHour);
+            course.setCCredit(cCredit);
+            course.setCTime(cTime);
+            course.setCSite(cSite);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+            java.util.Date date = simpleDateFormat.parse(cTestTime);
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            if(date != null){
+                timestamp = new Timestamp(date.getTime());
+            }
+            course.setCTestTime(timestamp);
+            course.setCSelectedNum(cSelectedNum);
+            int res = courseService.updateCourse(course);
+            if(res > 0){
+                model.addAttribute("updateCourseMsg", "修改成功!");
+            }else{
+                model.addAttribute("updateCourseMsg", "修改失败!");
+            }
+        }
+        return "updateCourseInfo";
     }
 
     // 管理教职工#################################################################################################
