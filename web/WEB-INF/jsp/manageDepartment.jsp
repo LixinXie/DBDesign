@@ -13,11 +13,11 @@
         </button>&nbsp;&nbsp;
     </h5>
     <div class="span12" align="center">
-        <button type="button" value="录入系别信息">
-            <a href="${pageContext.request.contextPath}/#t?userId=${userId}&userType=管理员">录入系别信息</a>
-        </button><br><br>
+<%--        <button type="button" value="录入系别信息">--%>
+<%--            <a href="${pageContext.request.contextPath}/toAddDepartmentInfo?userId=${userId}&userType=管理员">录入系别信息</a>--%>
+<%--        </button><br><br>--%>
         <button type="button" value="修改系别信息">
-            <a href="${pageContext.request.contextPath}/#?userId=${userId}&userType=管理员">修改系别信息</a>
+            <a href="${pageContext.request.contextPath}/toInputDno?userId=${userId}&userType=管理员">修改系别信息</a>
         </button><br><br>
     </div>
 </body>

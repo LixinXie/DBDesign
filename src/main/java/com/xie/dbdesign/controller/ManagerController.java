@@ -484,5 +484,96 @@ public class ManagerController {
         return "manageDepartment";
     }
 
+    // 跳转到录入系别信息的界面
+    @RequestMapping("/toAddDepartmentInfo")
+    public String toAddDepartmentInfo(Model model,
+                                      @RequestParam("userId") String userId,
+                                      @RequestParam("userType") String userType){
+        model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
+        return "addDepartmentInfo";
+    }
+
+    // 录入系别信息
+    @RequestMapping("/addDepartmentInfo")
+    public String addDepartmentInfo(Model model,
+                                    @RequestParam("userId") String userId,
+                                    @RequestParam("userType") String userType,
+                                    @RequestParam("dNo") String dNo,
+                                    @RequestParam("dName") String dName,
+                                    @RequestParam("dDescription") String dDescription){
+        model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
+        // 查询是否存在该系
+        Department temp = departmentService.queryDepartmentByDno(dNo);
+        if(temp != null){
+            model.addAttribute("addDepartmentMsg", "已存在该系,录入失败!");
+        }else{
+            // 创建新的系对象
+            Department department = new Department();
+            department.setDNo(dNo);
+            department.setDName(dName);
+            department.setDDescription(dDescription);
+            if(departmentService.addDepartment(department) > 0){
+                model.addAttribute("addDepartmentMsg", "录入成功!");
+            }else{
+                model.addAttribute("addDepartmentMsg", "录入失败!");
+            }
+        }
+        return "addDepartmentInfo";
+    }
+
+    // 跳转到输入系号修改页面
+    @RequestMapping("/toInputDno")
+    public String toInputDno(Model model,
+                             @RequestParam("userId") String userId,
+                             @RequestParam("userType") String userType){
+        model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
+        return "toInputDnoUpdateDepartmentInfo";
+    }
+
+    // 跳转到修改系别信息页面
+    @RequestMapping("toUpdateDepartment")
+    public String toUpdateDepartment(Model model,
+                                     @RequestParam("userId") String userId,
+                                     @RequestParam("userType") String userType,
+                                     @RequestParam("dNo") String dNo){
+        model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
+        // 查询该系是否存在
+        Department dept = departmentService.queryDepartmentByDno(dNo);
+        if(dept == null){
+            model.addAttribute("msg", "未找到该系信息!请重新输入系号!");
+            return "toInputDnoUpdateDepartmentInfo";
+        }
+        model.addAttribute("currDept", dept);
+        return "updateDepartmentInfo";
+    }
+
+    // 修改系别信息
+    @RequestMapping("updateDepartmentInfo")
+    public String updateDepartmentInfo(Model model,
+                                       @RequestParam("userId") String userId,
+                                       @RequestParam("userType") String userType,
+                                       @RequestParam("dNo") String dNo,
+                                       @RequestParam("dName") String dName,
+                                       @RequestParam("dDescription") String dDescription){
+        model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
+        // 创建新系对象
+        Department department = new Department();
+        department.setDNo(dNo);
+        department.setDName(dName);
+        department.setDDescription(dDescription);
+        if(departmentService.updateDepartment(department) > 0){
+            model.addAttribute("updateDeptMsg", "修改成功!");
+        }else{
+            model.addAttribute("updateDeptMsg", "修改失败!");
+        }
+        model.addAttribute("currDept", department);
+        return "updateDepartmentInfo";
+    }
+
 
 }
