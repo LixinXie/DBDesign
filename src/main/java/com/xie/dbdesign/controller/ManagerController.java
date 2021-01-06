@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -349,6 +350,127 @@ public class ManagerController {
         return "manageTeacher";
     }
 
+    // 跳转到录入教职工信息页面
+    @RequestMapping("/toAddTeacherInfo")
+    public String toAddTeacher(Model model,
+                              @RequestParam("userId") String userId,
+                              @RequestParam("userType") String userType){
+        model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
+        return "addTeacherInfo";
+    }
+
+    // 录入教职工信息
+    @RequestMapping("/addTeacherInfo")
+    public String addTeacherInfo(Model model,
+                                 @RequestParam("userId") String userId,
+                                 @RequestParam("userType") String userType,
+                                 @RequestParam("tNo") String tNo,
+                                 @RequestParam("tName")String tName,
+                                 @RequestParam("tSex")String tSex,
+                                 @RequestParam("tBirthday")Date tBirthday,
+                                 @RequestParam("dNo")String dNo,
+                                 @RequestParam("tTitle")String tTitle,
+                                 @RequestParam("tMajor")String tMajor,
+                                 @RequestParam("pswd") String pswd){
+        model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
+        // 查询是否存在该教职工
+        Teacher temp = teacherService.queryTeacherByTno(tNo);
+        List<Department> departments = departmentService.queryAllDepartment();
+        if(temp != null){
+            model.addAttribute("addStudentMsg", "已存在该教职工,录入失败!");
+        }else{
+            // 创建新教职工
+            Teacher teacher = new Teacher();
+            teacher.setTNo(tNo);
+            teacher.setTName(tName);
+            teacher.setTSex(tSex);
+            teacher.setTBirthday(tBirthday);
+            teacher.setDNo(dNo);
+            teacher.setTTitle(tTitle);
+            teacher.setTMajor(tMajor);
+            // 创建新用户
+            Users user = new Users();
+            user.setUsername(tNo);
+            user.setPswd(pswd);
+            user.setUsertype("教职工");
+            if(usersService.addUser(user) > 0 && teacherService.addTeacher(teacher) > 0){
+                model.addAttribute("addTeacherMsg", "录入成功!");
+            }else{
+                model.addAttribute("addTeacherMsg", "录入失败!");
+            }
+        }
+        return "addTeacherInfo";
+    }
+
+    // 跳转到输入教职工号修改界面
+    @RequestMapping("/toInputTno")
+    public String toInputTno(Model model,
+                             @RequestParam("userId") String userId,
+                             @RequestParam("userType") String userType){
+        model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
+        return "toInputTnoUpdateTeacherInfo";
+    }
+
+    // 跳转到修改教职工信息界面
+    @RequestMapping("/toUpdateTeacherInfo")
+    public String toUpdateTeacherInfo(Model model,
+                                      @RequestParam("userId") String userId,
+                                      @RequestParam("userType") String userType,
+                                      @RequestParam("tNo") String tNo){
+        model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
+        Teacher teacher = teacherService.queryTeacherByTno(tNo);
+        if(teacher == null){
+            model.addAttribute("msg", "未找到该教职工信息!请重新输入教职工号!");
+            return "toInputTnoUpdateTeacherInfo";
+        }else{
+            model.addAttribute("currTeacher", teacher);
+        }
+        return "updateTeacherInfo";
+    }
+
+    // 修改教职工信息
+    @RequestMapping("/updateTeacherInfo")
+    public String updateTeacherInfo(Model model,
+                                    @RequestParam("userId") String userId,
+                                    @RequestParam("userType") String userType,
+                                    @RequestParam("tNo") String tNo,
+                                    @RequestParam("tName")String tName,
+                                    @RequestParam("tSex")String tSex,
+                                    @RequestParam("tBirthday")Date tBirthday,
+                                    @RequestParam("dNo")String dNo,
+                                    @RequestParam("tTitle")String tTitle,
+                                    @RequestParam("tMajor")String tMajor,
+                                    @RequestParam("pswd") String pswd){
+        model.addAttribute("userId", userId);
+        model.addAttribute("userType", userType);
+        // 创建新教职工
+        Teacher teacher = new Teacher();
+        teacher.setTNo(tNo);
+        teacher.setTName(tName);
+        teacher.setTSex(tSex);
+        teacher.setTBirthday(tBirthday);
+        teacher.setDNo(dNo);
+        teacher.setTTitle(tTitle);
+        teacher.setTMajor(tMajor);
+        // 创建新用户
+        Users user = new Users();
+        user.setUsername(tNo);
+        user.setPswd(pswd);
+        user.setUsertype("教职工");
+        int resUser = usersService.updateUser(user);
+        int resTea = teacherService.updateTeacher(teacher);
+        if(resUser > 0 && resTea > 0){
+            model.addAttribute("updateTeacherMsg", "修改成功!");
+        }else{
+            model.addAttribute("updateTeacherMsg", "修改失败!");
+        }
+        model.addAttribute("currTeacher", teacher);
+        return "updateTeacherInfo";
+    }
 
     // 管理系别#################################################################################################
 
