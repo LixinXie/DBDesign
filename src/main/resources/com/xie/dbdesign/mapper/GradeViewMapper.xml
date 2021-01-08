@@ -25,34 +25,40 @@
     <select id="queryGradeViewBySno" resultMap="GradeViewResultMap">
         select * from dbdesign_5071.View_Grade_5071
         where s_no = #{sNo}
+        order by c_no, general_grade desc
     </select>
 
     <select id="queryGradeViewBySname" resultMap="GradeViewResultMap">
         select * from dbdesign_5071.View_Grade_5071
         where s_name like '%' #{sName} '%'
+        order by c_no, general_grade desc
     </select>
 
     <select id="queryGradeViewByCno" resultMap="GradeViewResultMap">
         select * from dbdesign_5071.View_Grade_5071
         where c_no = #{cNo}
+        order by c_no,  general_grade desc
     </select>
 
     <select id="queryGradeViewByCname" resultMap="GradeViewResultMap">
         select * from dbdesign_5071.View_Grade_5071
         where c_name = #{cName}
+        order by c_no, general_grade desc
     </select>
     
     <select id="queryGradeViewByTname" resultMap="GradeViewResultMap">
         select * from dbdesign_5071.View_Grade_5071
         where t_name like '%' #{tName} '%'
+        order by c_no, general_grade desc
     </select>
 
     <select id="queryGradeViewByDno" resultMap="GradeViewResultMap">
         select * from dbdesign_5071.View_Grade_5071
         where d_no = #{dNo}
+        order by c_no, general_grade desc
     </select>
 
     <select id="queryALLGradeView" resultMap="GradeViewResultMap">
-        select * from dbdesign_5071.View_Grade_5071
+        select * from dbdesign_5071.View_Grade_5071 order by c_no, general_grade desc
     </select>
 </mapper>
