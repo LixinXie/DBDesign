@@ -78,20 +78,38 @@ public class GradeController {
         model.addAttribute("userId", userId);
         model.addAttribute("userType", userType);
         Grade grade = new Grade();
-        grade.setSNo(sNo);
-        grade.setCNo(cNo);
-        grade.setUsualGrade(usualGrade);
-        grade.setTestGrade(testGrade);
-        grade.setGeneralGrade(generalGrade);
-        Grade temp = gradeService.queryGradeBySnoCno(sNo, cNo);
+        boolean uGrade = false;
+        boolean tGrade = false;
+        boolean gGrade = false;
+        boolean canAdd = false;
+        if(usualGrade >= 0 && usualGrade <= 100){
+            uGrade = true;
+        }
+        if(testGrade >=0 && testGrade <= 100){
+            tGrade = true;
+        }
+        if(generalGrade >=0 && generalGrade <= 100){
+            gGrade = true;
+        }
+        if(uGrade && tGrade && gGrade){
+            grade.setSNo(sNo);
+            grade.setCNo(cNo);
+            grade.setUsualGrade(usualGrade);
+            grade.setTestGrade(testGrade);
+            grade.setGeneralGrade(generalGrade);
+            Grade temp = gradeService.queryGradeBySnoCno(sNo, cNo);
+            if(temp == null){// 选课表没有此记录
+                canAdd = true;
+            }
+        }
         int res = 0;
-        if(temp == null){// 选课表没有此记录
+        if(canAdd){
             res = gradeService.addGrade(grade);
         }
         if(res > 0){
             model.addAttribute("addGradeMsg", "录入成功!");
         }else{
-            model.addAttribute("addGradeMsg", "录入失败,已存在记录!");
+            model.addAttribute("addGradeMsg", "录入失败!");
         }
         return "addGrade";
     }
